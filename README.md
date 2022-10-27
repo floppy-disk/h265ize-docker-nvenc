@@ -1,6 +1,6 @@
 # h265ize
 
-A [Docker](http://docker.com) image for [h265ize](https://github.com/FallingSnow/h265ize), to make it easy to convert videos to h.265.
+A [Docker](http://docker.com) image for [h265ize](https://github.com/FallingSnow/h265ize), to make it easy to convert videos to h.265 using NVIDIA hardware acceleration.
 
 [![](https://images.microbadger.com/badges/image/adriel/h265ize.svg)](https://microbadger.com/images/adriel/h265ize)
 

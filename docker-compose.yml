@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+  nvidia265:
+    build: .
+    command: nvidia-smi
+    runtime: nvidia
+    container_name: nvidia265
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /media/tv:/input"
+      - /media/tv_265:/output"
+      - ./video.js:/usr/lib/node_modules/h265ize/lib/classes/video.js
+    restart: "unless-stopped"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]

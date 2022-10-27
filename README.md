@@ -3,19 +3,25 @@
 A [Docker](http://docker.com) image for [h265ize](https://github.com/FallingSnow/h265ize), to make it easy to convert videos to h.265.
 
 [![](https://images.microbadger.com/badges/image/adriel/h265ize.svg)](https://microbadger.com/images/adriel/h265ize)
-## Getting Started
 
-```sh
-docker run -d --init \
-  --name h265ize \
-  -u <UID> \
-  --restart unless-stopped \
-  -v </location/to/video/files/input>:/input \
-  -v </location/to/video/files/output>:/output \
-  adriel/h265ize
+## Prerequisites
+
+You must have the same NVIDIA drivers and CUDA installed on the host system as are installed in this container. 
+
+```
+Driver Version: 520.61.05
+CUDA Version: 11.8 
 ```
 
-Replace `<UID>` with your user's ID, you can get this by running `id -u`, e.g. `-u 1002 `.
+You must also [install the NVIDIA container toolkit on the host system](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker), if not already done.
+
+## Getting Started with Docker Compose
+
+```sh
+docker-compose up —-build -d
+```
+
+Modify the PUID and PGID in the `docker-compose.yml` file as needed.
 
 This is to make sure the container can read/write your input and output directories.
 
@@ -34,17 +40,8 @@ You can add your own parameters.
 For example, you may want to change the default quality from 19 to 25 (higher number = lower quality/smaller file)
 
 ```sh
-docker run -d --init \
-  --name h265ize \
-  -u <UID> \
-  --restart unless-stopped \
-  -v /location/to/video/files/input:/input \
-  -v /location/to/video/files/output:/output \
-  adriel/h265ize -q 25
+(( TO DO ))
 ```
-Note the `-q 25` added after `adriel/h265ize`.
-
-You can add any of the options mentioned on the [official h265ize GitHub page](https://github.com/FallingSnow/h265ize#options) after the image name.
 
 #### Paths in container
 
@@ -57,15 +54,7 @@ Directory where converted h.265 videos will be created: `/output`
 It's [recommended](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md) to add the NODE_ENV environment variable and Node.js memory limits.
 
 ```sh
-docker run -d --init \
-  --name h265ize \
-  -e "NODE_ENV=production" \
-  -u <UID> \
-  -m "300M" --memory-swap "1G" \
-  --restart unless-stopped \
-  -v /home/yo/dockers/h265ize/docker_files/input:/input \
-  -v /home/yo/dockers/h265ize/docker_files/output:/output \
-  adriel/h265ize
+(( TO DO ))
 ```
 
 ### Info - program versions
@@ -77,18 +66,18 @@ docker run -d --init \
 ##### Shell access
 
 ```sh
-docker exec -it h265ize /bin/sh
+docker exec -it nvidia265 /bin/bash
 ```
 
 ##### Logs
 
 ```sh
-docker logs -f h265ize
+docker logs -f nvidia265
 ```
 
 #### Versions
 
-11/04/2017 - initial build.
+10/27/2022 - initial build.
 
 ----
 

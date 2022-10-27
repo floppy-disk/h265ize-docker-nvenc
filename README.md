@@ -79,6 +79,9 @@ docker logs -f nvidia265
 
 10/27/2022 - initial build.
 
+#### Credits
+Forked from [adriel/h265ize-docker](https://github.com/adriel/h265ize-docker)
+video.js file adapted from [FallingSnow/h265ize](https://github.com/FallingSnow/h265ize) be cause of this [GitHub issue discussion](https://github.com/FallingSnow/h265ize/issues/75#issuecomment-999597550)
 ----
 
 Please feel free to leave a comment if you have any questions.
